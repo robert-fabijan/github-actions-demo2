@@ -14,10 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy something
-        run: |
-          echo "Deploying application 1...."
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependecies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest
 
   print:
     needs: test
