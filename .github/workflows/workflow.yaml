@@ -10,10 +10,28 @@ on:
 
 jobs:
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy something
+        run: |
+          echo "Deploying application 1...."
+
+
   print:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Deploy something
         run: |
-          echo "Deploying application...."
+          echo "Deploying application 2...."
+
+  print2:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy something
+        run: |
+          echo "Deploying application 3...."
 
