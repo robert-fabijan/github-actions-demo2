@@ -1,0 +1,25 @@
+name: Manual Trigger Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Wybierz środowisko (dev, staging, production)' # Opis                   
+        required: true
+        default: 'dev'
+      version:
+        description: 'Wersja aplikacji do wdrożenia'
+        required: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Print inputs
+      run: |
+        echo "Środowisko: ${{ inputs.environment }}"
+        echo "Wersja: ${{ inputs.version }}"
